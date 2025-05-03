@@ -1,0 +1,8 @@
+.metadata/*
+.metadata
+Servers/*
+Servers
+JavaApi/gradlew.bat
+JavaApi/gradle/*
+JavaApi/src/main/resources/application.properties
+front_side/zz_internal_dev/内部的なコードについて.md
