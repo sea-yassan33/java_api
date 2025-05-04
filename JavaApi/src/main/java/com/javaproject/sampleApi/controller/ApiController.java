@@ -42,7 +42,7 @@ public class ApiController {
 	 * @param requestValueStr
 	 * 
 	 */
-	// SP500のデータ
+	// SP500のデータの取得
 	@GetMapping("/sp500_all_data")
 	public List<DataSpEntity> spAll(@RequestParam(value = "late",required = false) String requestValueStr) {
 		List<DataSpEntity> dataSp = new ArrayList<DataSpEntity>();
