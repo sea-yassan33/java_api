@@ -1,15 +1,23 @@
-## 開発環境
-```sh
-npx create-next-app@14.2.13
-Ok to proceed? (y) y
-✔ What is your project named? … [プロジェクト名]
-✔ Would you like to use TypeScript? …  / Yes
-✔ Would you like to use ESLint? …  / Yes
-✔ Would you like to use Tailwind CSS? …  / YES
-✔ Would you like to use `src/` directory? … No / 
-✔ Would you like to use App Router? (recommended) …  / Yes
-✔ Would you like to customize the default import alias (@/*)? … No / 
+## app01
+- 【デザインプロンプト】
+```
+株価(Date,Open,High,Low,Close)のデータから一覧表示とグラフを表示する画面を作成してください。
+
+開発環境配下の通りです
+## フロントエンド
+    - next.js
+## スタイルフレームワーク
+    - tailwindcss
 ```
 
-- [初期設定について](./Document/initial_setup.md)
+- 【インポート】
+```sh
+# JavaScriptの日付を操作するためJavaScriptライブラリ
+npm install date-fns
 
+# ベクター（SVG）ファイルを提供するオープンソースのアイコンライブラリ
+npm install lucide-react
+
+# 可視化ライブラリ
+npm install recharts
+```
