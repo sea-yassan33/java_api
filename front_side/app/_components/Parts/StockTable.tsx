@@ -14,7 +14,7 @@ type SortOrder = "asc" | "desc";
 // main
 export default function StockTable({ data }: StockTableProps){
     const [sortKey, setSortKey] = useState<SortKey>("date");
-    const [sortOrder, setSortOrder] = useState<SortOrder>("desc");
+    const [sortOrder, setSortOrder] = useState<SortOrder>("asc");
     // ソートの状態を管理するための関数
     // sortKey: ソートするキー（date, open, high, low, close）
     const sortedData = [...data].sort((a, b) => {
