@@ -9,3 +9,11 @@ front_side/zz_internal_dev/内部的なコードについて.md
 internal_memo.md
 front_side/config/*
 front_side/zz_internal_dev/*
+python_code/*.ipynb
+.env
+内部メモ.md
+python_code/result
+python_code/result/*
+python_code/__pycache__
+python_code/__pycache__/*
+python_code/*.java
