@@ -9,6 +9,7 @@
 ### バックエンド
 - Java
 - Spring Boot
+- Python
 
 
 ## 参考
