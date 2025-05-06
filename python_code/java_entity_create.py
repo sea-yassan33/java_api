@@ -1,6 +1,8 @@
+# py java_entity_create.py [テーブル名]
 import warnings
 warnings.filterwarnings("ignore", category=UserWarning)
 import os
+import sys
 import mysql.connector as mysql
 import numpy as np
 import pandas as pd
@@ -13,8 +15,12 @@ db_config = {
     'password': os.environ['DB_PASSWORD'],
     'database': os.environ['DB_NAME']
 }
+# コマンドライン引数が指定されていない場合はエラー
+if len(sys.argv) < 2:
+    print("テーブル名を指定してください。")
+    sys.exit(1)
 # テーブル名
-table_name = 'data_sp'
+table_name = sys.argv[1]
 # MySQL型 → Java型のマッピング
 type_mapping = {
     'int': 'Integer',
@@ -33,13 +39,20 @@ type_mapping = {
 # MySQLに接続
 conn = mysql.connect(**db_config)
 cursor = conn.cursor(dictionary=True)
-# カラム情報取得
-cursor.execute(f"""
-    SELECT COLUMN_NAME, DATA_TYPE, COLUMN_KEY
-    FROM information_schema.columns
-    WHERE table_schema = '{db_config['database']}' AND table_name = '{table_name}'
-""")
-columns = cursor.fetchall()
+try:
+    # カラム情報取得
+    cursor.execute(f"""
+        SELECT COLUMN_NAME, DATA_TYPE, COLUMN_KEY
+        FROM information_schema.columns
+        WHERE table_schema = '{db_config['database']}' AND table_name = '{table_name}'
+    """)
+    columns = cursor.fetchall()
+except mysql.Error as e:
+    print(f"エラーが発生しました: {e}")
+    # 後処理
+    cursor.close()
+    conn.close()
+    sys.exit(1)
 # クラス名（パスカルケース変換）
 class_name = ''.join(word.capitalize() for word in table_name.split('_'))
 # クラス開始
