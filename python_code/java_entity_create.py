@@ -4,8 +4,6 @@ warnings.filterwarnings("ignore", category=UserWarning)
 import os
 import sys
 import mysql.connector as mysql
-import numpy as np
-import pandas as pd
 from dotenv import load_dotenv
 load_dotenv()
 # MySQL接続情報
