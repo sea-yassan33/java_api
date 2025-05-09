@@ -67,6 +67,32 @@ export default function MemoList() {
     }
   }
 
+  // メモを削除する
+  const deleteMemo = async (memo: Memo) => {
+    try {
+      const response = await fetch(`${config.api02delete}${memo.id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(memo),
+      });
+      if (!response.ok) {
+        throw new Error("Failed to delete memo");
+      }
+      // メモを削除
+      console.log("メモが削除されました。");
+      setTimeout(() => {
+        window.location.href = '/api02';
+      }, 1000);
+    } catch (error) {
+      console.error("Error deleting memo:", error);
+      setTimeout(() => {
+        window.location.href = '/404';
+      }, 1000)
+    }
+  }
+
   return (
     <div>
       {memos.length === 0 ? (
@@ -91,7 +117,7 @@ export default function MemoList() {
                 <Pencil className="h-4 w-4" />
                 <span className="sr-only" onClick={() => openEditDialog(memo)}>編集</span>
               </Button>
-              <Button variant="outline" size="icon">
+              <Button variant="outline" size="icon" onClick={() => deleteMemo(memo)}>
                 <Trash2 className="h-4 w-4" />
                 <span className="sr-only">削除</span>
               </Button>

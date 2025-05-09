@@ -64,5 +64,14 @@ public class MemoController {
 		memoDataDao.updateMemo(id, request.getName(), request.getContent());
 		return ResponseEntity.ok("更新成功");
 	}
+	
+	/**
+	 * メモ削除
+	 */
+	@PutMapping("/delete/{id}")
+	public ResponseEntity<String> deleteMemo(@PathVariable Long id, @RequestBody MemoTableEntity request){
+		memoDataDao.deleteMemo(id);
+		return ResponseEntity.ok("更新成功");
+	}
 
 }

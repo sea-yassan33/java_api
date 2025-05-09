@@ -15,6 +15,8 @@ import com.javaproject.sampleApi.dto.MemoTableEntity;
 @Service
 public class MemoDataDao {
 
+	private final Integer DELETE_FLAG = 1;
+	
 	@PersistenceContext
 	private EntityManager entityManager;
 	
@@ -37,6 +39,17 @@ public class MemoDataDao {
 			memoDto.setName(newName);
 			memoDto.setContent(newContent);
 			memoDto.setUpdate_date(LocalDateTime.now());
+		}else {
+			throw new IllegalArgumentException("Memo with id " + id + " not found");
+		}
+	}
+	
+	@Transactional
+	public void deleteMemo(Long id) {
+		MemoTableEntity memoDto = entityManager.find(MemoTableEntity.class, id);
+		if(memoDto != null) {
+			memoDto.setUpdate_date(LocalDateTime.now());
+			memoDto.setDelet_flag(DELETE_FLAG);
 		}else {
 			throw new IllegalArgumentException("Memo with id " + id + " not found");
 		}
