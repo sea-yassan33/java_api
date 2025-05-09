@@ -23,11 +23,10 @@ public class ApiController {
 	// 初期化
 	private DataSpRepository dataSpRepository;
 	private DataSpDao dataSpDao;
-    public ApiController(DataSpRepository dataSpRepository,DataSpDao dataSpDao) {
-        this.dataSpRepository = dataSpRepository;
-        this.dataSpDao = dataSpDao;
-    }
-    
+	public ApiController(DataSpRepository dataSpRepository,DataSpDao dataSpDao) {
+		this.dataSpRepository = dataSpRepository;
+		this.dataSpDao = dataSpDao;
+	}
 	
 	@GetMapping("/helloAPI")
 	public SampleMessage hello() {
@@ -50,7 +49,7 @@ public class ApiController {
 			//引数がない場合
 			dataSp = dataSpRepository.findAll();
 			return dataSp;
-		}
+			}
 		// 数値かどうか
 		if (isNum(requestValueStr)) {
 			int valueInt = Integer.valueOf(requestValueStr);
@@ -67,7 +66,7 @@ public class ApiController {
 	private boolean isNum(String str) {
 		if (str == null || str.isEmpty()) {
 			return false;
-		}
+			}
 		return str.matches("\\d+");
-	}
+		}
 }
